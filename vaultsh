@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Verify if it isn't running as root
+if [[ $(whoami) -eq "root" ]]; then
+  echo "❌ Error: Run this script as root is not allowed." >&2
+  exit 1
+fi
+
+# Create the destination folder
+mkdir -p ~/.vaultsh/
+
+CURRENT_DIR=${PWD##*/}
+TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
+
+# Root protection, lol
+if [[ $CURRENT_DIR == "" ]]; then
+  echo "❌ Error: Backing up the root directory (/) is not allowed." >&2
+  echo "ℹ️  Please run this script inside a specific directory you want to back up." >&2
+  exit 1
+fi
+
+echo "Making backup"
+tar -cvzf "$HOME/.vaultsh/$CURRENT_DIR$TIMESTAMP.tar.gz" .
+
+echo "Done"
