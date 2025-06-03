@@ -14,4 +14,5 @@ WARNING THIS IS STILL VERY MUCH WIP
 **If you have any other ideas for a possible feature, feel free to let me know**
 
 ## Installation
-Just run the ```install.sh``` script and run it with ```vaultsh```
+Just run the ```install.sh``` script and run it with ```vaultsh```.
+It update automatically if you already have the script installed
