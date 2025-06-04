@@ -20,8 +20,7 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H:%M")
 DIR_ID=$(echo "$CURRENT_DIR" | shasum | cut -c1-30)
 
 load_backup () {
-
-  # Exits if
+  
   if [[ -z $1 ]]; then
     echo "❌ You need to provide a backup name."
     echo "📁 Available backups:"
