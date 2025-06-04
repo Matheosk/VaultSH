@@ -26,8 +26,6 @@ load_backup () {
     ls -1 "$HOME/.vaultsh/$DIR_ID/"
     exit 1
   fi
-    exit 1
-  fi
 
   SELECTED_BCKUP="$HOME/.vaultsh/$DIR_ID/$1"
 
