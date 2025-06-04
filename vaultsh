@@ -9,17 +9,72 @@ fi
 # Create the destination folder
 mkdir -p ~/.vaultsh/
 
-CURRENT_DIR=${PWD##*/}
-TIMESTAMP=$(date +"%Y-%m-%d-%H-%M")
+#####################
+# VAR AND FUNCTIONS #
+#####################
+
+CURRENT_DIR=$(pwd)
+TIMESTAMP=$(date +"%Y-%m-%d_%H:%M")
+
+# Create a unique ID for any directory
+DIR_ID=$(echo "$CURRENT_DIR" | shasum | cut -c1-30)
+
+load_backup () {
+
+  # Exits if
+  if [[ -z $1 ]]; then
+    echo "❌ You need to provide a backup name."
+    echo "📁 Available backups:"
+    ls -1 "$HOME/.vaultsh/$DIR_ID/"
+    exit 1
+  fi
+    exit 1
+  fi
+
+  SELECTED_BCKUP="$HOME/.vaultsh/$DIR_ID/$1"
+
+  if [[ ! -f $SELECTED_BCKUP ]]; then
+    echo "❌ Invalid backup name: '$1'"
+    echo "📁 Available backups:"
+    ls -1 "$HOME/.vaultsh/$DIR_ID/"
+    exit 1
+  fi
+  
+  echo "🔁 Restoring backup: $1"
+  rm -rf ./*
+  tar -xf $SELECTED_BCKUP
+  echo "✅ Restore completed"
+  
+  exit 1
+}
+
+print_help () {
+  echo "VaultSH - Backup Manager Written in Bash
+========================================
+load <file>  Load the selected backup
+help         Print this message
+  "
+  exit 1
+}
+
 
 # Root protection, lol
-if [[ $CURRENT_DIR == "" ]]; then
+if [[ $CURRENT_DIR == "/" ]]; then
   echo "❌ Error: Backing up the root directory (/) is not allowed." >&2
   echo "ℹ️  Please run this script inside a specific directory you want to back up." >&2
   exit 1
 fi
 
-echo "Making backup"
-tar -cvzf "$HOME/.vaultsh/$CURRENT_DIR$TIMESTAMP.tar.gz" .
+case "$1" in
+  load)
+    load_backup "$2"
+  ;;
+  help) 
+    print_help
+  ;;
+esac
 
-echo "Done"
+echo "📦 Creating backup..."
+mkdir -p "$HOME/.vaultsh/$DIR_ID/"
+tar -czf "$HOME/.vaultsh/$DIR_ID/$TIMESTAMP.tar.gz" .
+echo "✅ Backup saved as: $TIMESTAMP.tar.gz"
