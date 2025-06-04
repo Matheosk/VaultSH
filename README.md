@@ -8,8 +8,9 @@ WARNING THIS IS STILL VERY MUCH WIP
 ## TO-DO
 
 1. ~Restore backup~
-3. Delete older backups
-2. Config file
+2. Delete older backups
+3. Config file
+4. SSH server support
 
 **If you have any other ideas for a possible feature, feel free to let me know**
 
