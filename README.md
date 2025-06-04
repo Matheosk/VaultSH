@@ -7,7 +7,7 @@ WARNING THIS IS STILL VERY MUCH WIP
 
 ## TO-DO
 
-1. Restore backup
+1. ~Restore backup~
 3. Delete older backups
 2. Config file
 
