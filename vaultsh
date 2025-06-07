@@ -48,6 +48,7 @@ print_help () {
   echo "VaultSH - Backup Manager Written in Bash
 ========================================
 load <file>  Load the selected backup
+list         List available backups for current directory
 help         Print this message
   "
   exit 1
@@ -64,6 +65,11 @@ fi
 case "$1" in
   load)
     load_backup "$2"
+  ;;
+  list)
+    echo "📁 Available backups:"
+    ls -1 "$HOME/.vaultsh/$DIR_ID/"
+    exit 1
   ;;
   help) 
     print_help
