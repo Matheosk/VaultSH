@@ -8,6 +8,7 @@ read -r option
 case "$option" in
   1) 
     echo "Installing in the current user"
+    mkdir -p $HOME/.local/bin/
     cp -f vaultsh $HOME/.local/bin/
   ;;
   2) 
