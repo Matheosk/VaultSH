@@ -1,6 +1,7 @@
 # VaultSH
 
 A simple backup script written in bash
+
 It makes a backup of the working directory on ~/.vaultsh
 
 WARNING THIS IS STILL VERY MUCH WIP
