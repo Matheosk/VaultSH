@@ -9,8 +9,8 @@ WARNING THIS IS STILL VERY MUCH WIP
 ## TO-DO
 
 1. ~Restore backup~
-2. Delete older backups
-3. Config file
+2. Automatically delete older backups 
+3. Config file (for backup to a custom dir)
 4. SSH server support
 
 **If you have any other ideas for a possible feature, feel free to let me know**
